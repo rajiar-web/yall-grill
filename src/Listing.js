@@ -3,8 +3,59 @@ import axios from 'axios';
 class Listing extends React.Component 
 {
    
-    render() 
-    {
+  constructor()
+  {
+     super();
+     this.state={
+        products:[],
+        category:[],
+      
+       
+        
+     }
+     
+  }
+  componentDidMount()
+  {
+    
+   
+     
+      axios.get('http://127.0.0.1/yaalgrill/Api_controller/get_category')
+    
+     .then(response=> {
+         const ct = response.data;
+        this.setState({category:response.data})
+      console.log(this.state.category)
+       
+     })
+     .catch(error => console.log(error));
+
+    
+
+
+     axios.get('http://127.0.0.1/yaalgrill/Api_controller/get_products')
+    
+     .then(response=> {
+         const pt = response.data;
+        this.setState({products:response.data})
+      console.log(this.state.products)
+       
+     })
+     .catch(error => console.log(error));
+     
+
+  }
+  render()
+  {
+    const baseurl = 'http://127.0.0.1/yaalgrill/Api_controller/get_category';
+ 
+    const myDivStyle = {
+     maxwidth: '100%',
+     height: 'auto'
+    
+   };
+
+
  
       return(
          
@@ -25,24 +76,18 @@ class Listing extends React.Component
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0 mt-4 mt-lg-0">
+            {
+         this.state.category.map((ctt,k)=>{
+          
+                             return (
               <li className="nav-item">
-                <a className="nav-link" aria-current="page" href="#">German donor kebab</a>
+                <a className="nav-link" aria-current="page" href="#">{ctt.c_category}</a>
               </li>
-              <li className="nav-item">
-                <a className="nav-link active" href="#">Grilled chicken</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#">Burger Meat </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#">Cold Drinks </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#">Pasta </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#">Pizza </a>
-              </li>
+               )  
+                    
+              })
+              }
+            
               </ul>
             <form className="d-lg-flex d-none">
               <input className="form-control search-form-ctrl me-2" type="search" placeholder="Search" aria-label="Search"/  >
@@ -53,18 +98,22 @@ class Listing extends React.Component
       </nav>
     </div>
     <div className="row align-items-stretch g-4 pt-5 pb-4">
+    {
+         this.state.products.map((ptt,k)=>{
+          
+                             return (
       <div className="col-12 col-md-4"  data-aos="fade-up" data-aos-duration="700">
         <div className="card card-cover home-item-card h-100 overflow-hidden text-white rounded-5 shadow-lg">
           <div className="d-flex flex-column h-100 p-3 p-md-4 py-4 text-white text-shadow-1">
             <p className="item-p">Chicken</p>
-            <h4>Grilled Chicken <br />
-              Fillet (Full)</h4>
-            <img src="img/dish1.png" alt=""/>
+            <h4>{ptt.p_title}
+            </h4>
+            <img src={window.baseurl+"assets/front/img/products/"+ptt.p_image} alt=""/>
             <ul className="d-flex list-unstyled mt-4">
               
               <li className="me-3 price">
-                <h3 className="mb-0">£3.10</h3>
-                <p className="mb-0">Hot & Spicy Mini Fillets</p>
+                <h3 className="mb-0">£{ptt.p_price}</h3>
+                <p className="mb-0">{ptt.p_subtitle}</p>
               </li>
               <li className="ms-auto d-flex align-items-center">
                 <span className="pluse-fa d-flex align-items-center justify-content-center">
@@ -76,8 +125,11 @@ class Listing extends React.Component
         </div>
       </div>
 
-     
-      <div className="col-12 col-md-4"  data-aos="fade-up" data-aos-duration="1200">
+)  
+                    
+})
+}
+      {/* <div className="col-12 col-md-4"  data-aos="fade-up" data-aos-duration="1200">
         <div className="card card-cover home-item-card h-100 overflow-hidden text-white rounded-5 shadow-lg">
           <div className="d-flex flex-column h-100  p-3 p-md-4 py-4 text-white text-shadow-1">
             <p className="item-p">Chicken</p>
@@ -332,7 +384,7 @@ class Listing extends React.Component
             </ul>
           </div>
         </div>
-      </div>
+      </div> */}
 
 
 

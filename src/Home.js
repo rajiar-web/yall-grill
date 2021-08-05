@@ -8,6 +8,11 @@ class Home extends React.Component
       this.state={
          slider:[],
          sliders:[],
+         products:[],
+         pr1:[],
+         pr2:[],
+         pr3:[],
+         pr4:[],
         
          
       }
@@ -18,23 +23,39 @@ class Home extends React.Component
      
     
       
-      axios.get('http://127.0.0.1/yaalgrill/Api_controller/get_slider')
+       axios.get('http://127.0.0.1/yaalgrill/Api_controller/get_slider')
+     
       .then(response=> {
           const slider = response.data;
          this.setState({sliders:response.data})
-         //const slug  = this.props.match.params;
           console.log(this.state.sliders)
-          //console.log(response.data);
+        
       })
       .catch(error => console.log(error));
 
      
+
+      axios.get('http://127.0.0.1/yaalgrill/Api_controller/get_home_products')
+     
+      .then(response=> {
+         this.setState({products:response.data})
+         this.setState({pr1:response.data[0]})
+         this.setState({pr2:response.data[1]})
+         this.setState({pr3:response.data[2]})
+         this.setState({pr4:response.data[3]})
+          // console.log(this.state.pr1)
+       
+      })
+      .catch(error => console.log(error));
+
+
       
 
    }
    render()
    {
-    const baseurl = 'http://127.0.0.1/yaalgrill/Api_controller/get_slider';
+     const baseurl = 'http://127.0.0.1/yaalgrill/Api_controller/get_slider';
+  
      const myDivStyle = {
       maxwidth: '100%',
       height: 'auto'
@@ -46,7 +67,7 @@ class Home extends React.Component
 
 
 
-    const sliderr =this.state.sliders
+  
     return (
            
             <div>
@@ -57,15 +78,17 @@ class Home extends React.Component
     
        
       
-       <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-inner">
+       <div id="carouselExampleControls" className="carousel slide" data-bs-ride="carousel">
+    <div className="carousel-inner">
     {
          this.state.sliders.map((ss,k)=>{
-          // sliderr.map((ss,k)=>{
+          
                              return ( 
-      <div class="carousel-item active">
-        <img src={window.baseurl+"assets/front/img/"+ss.s_image} class="d-block w-100" alt="..."/>
-        <div class="carousel-caption slider-txt position-absolute top-50 start-50 translate-middle w-100" data-aos="fade-in" data-aos-duration="800">
+                           
+      <div className={(k=='0'?"carousel-item active":"carousel-item")} >
+                           
+        <img src={window.baseurl+"assets/front/img/"+ss.s_image} className="d-block w-100" alt="..."/>
+        <div className="carousel-caption slider-txt position-absolute top-50 start-50 translate-middle w-100" data-aos="fade-in" data-aos-duration="800">
           <h2>{ss.s_title}</h2>
         </div>
       </div>
@@ -99,14 +122,13 @@ class Home extends React.Component
         <div className="card card-cover home-item-card h-100 overflow-hidden text-white rounded-5 shadow-lg">
           <div className="d-flex flex-column h-100 p-3 p-md-4 py-4 text-white text-shadow-1">
             <p className="item-p">Chicken</p>
-            <h4>Grilled Chicken <br />
-              Fillet (Full)</h4>
-            <img src="img/dish1.png" alt=""/>
+            <h4>{this.state.pr1['p_title']}</h4>
+            <img src={window.baseurl+"assets/front/img/products/"+this.state.pr1['p_image']} alt=""/>
             <ul className="d-flex list-unstyled mt-4">
               
               <li className="me-3 price">
-                <h3 className="mb-0">£3.10</h3>
-                <p className="mb-0">Hot & Spicy Mini Fillets</p>
+                <h3 className="mb-0">£{this.state.pr1['p_price']}</h3>
+                <p className="mb-0">{this.state.pr1['p_subtitle']}</p>
               </li>
               <li className="ms-auto d-flex align-items-center">
                 <span className="pluse-fa d-flex align-items-center justify-content-center">
@@ -123,14 +145,13 @@ class Home extends React.Component
         <div className="card card-cover home-item-card h-100 overflow-hidden text-white rounded-5 shadow-lg">
           <div className="d-flex flex-column h-100  p-3 p-md-4 py-4 text-white text-shadow-1">
             <p className="item-p">Chicken</p>
-            <h4>Grilled Chicken <br />
-              On Bamboo</h4>
-            <img src="img/dish2.png" alt=""/>
+            <h4>{this.state.pr2['p_title']}</h4>
+            <img src={window.baseurl+"assets/front/img/products/"+this.state.pr2['p_image']} alt=""/>
             <ul className="d-flex list-unstyled mt-4">
               
               <li className="me-3 price">
-                <h3 className="mb-0">£2.70</h3>
-                <p className="mb-0">Hot & Spicy Mini Fillets</p>
+                <h3 className="mb-0">£{this.state.pr2['p_price']}</h3>
+                <p className="mb-0">{this.state.pr2['p_subtitle']}</p>
               </li>
               <li className="ms-auto d-flex align-items-center">
                 <span className="pluse-fa d-flex align-items-center justify-content-center">
@@ -147,14 +168,13 @@ class Home extends React.Component
         <div className="card card-cover home-item-card h-100 overflow-hidden text-white rounded-5 shadow-lg">
           <div className="d-flex flex-column h-100  p-3 p-md-4 py-4 text-white text-shadow-1">
             <p className="item-p">Chicken</p>
-            <h4>Grilled Chicken <br />
-              Drumsticks</h4>
-            <img src="img/dish3.png" alt=""/>
+            <h4>{this.state.pr3['p_title']}</h4>
+            <img src={window.baseurl+"assets/front/img/products/"+this.state.pr3['p_image']} alt=""/>
             <ul className="d-flex list-unstyled mt-4">
               
               <li className="me-3 price">
-                <h3 className="mb-0">£3.00</h3>
-                <p className="mb-0">Hot & Spicy Mini Fillets</p>
+                <h3 className="mb-0">£{this.state.pr3['p_price']}</h3>
+                <p className="mb-0">{this.state.pr3['p_subtitle']}</p>
               </li>
               <li className="ms-auto d-flex align-items-center">
                 <span className="pluse-fa d-flex align-items-center justify-content-center">
@@ -197,14 +217,13 @@ class Home extends React.Component
         <div className="card card-cover home-item-card h-100 overflow-hidden text-white rounded-5 shadow-lg">
           <div className="d-flex flex-column h-100 p-3 p-md-4 py-4 text-white text-shadow-1">
             <p className="item-p">Chicken</p>
-            <h4>Grilled Chicken <br />
-              Legs With Chips</h4>
-            <img src="img/dish4.png" alt=""/>
+            <h4>{this.state.pr4['p_title']}</h4>
+            <img src={window.baseurl+"assets/front/img/products/"+this.state.pr4['p_image']} alt=""/>
             <ul className="d-flex list-unstyled mt-4">
               
               <li className="me-3 price">
-                <h3 className="mb-0">£2.00</h3>
-                <p className="mb-0">Hot & Spicy Mini Fillets</p>
+                <h3 className="mb-0">£{this.state.pr4['p_price']}</h3>
+                <p className="mb-0">{this.state.pr3['p_subtitle']}</p>
               </li>
               <li className="ms-auto d-flex align-items-center">
                 <span className="shop-btn d-flex align-items-center justify-content-center">

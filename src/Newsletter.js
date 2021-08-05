@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
-import {toast,ToastContainer} from 'react-toastify';
+// import {toast,ToastContainer} from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 class NewsLetter extends React.Component
 {
@@ -107,6 +108,7 @@ class NewsLetter extends React.Component
     onFormSubmit(e) {
       e.preventDefault();
       console.log(this.state.startDate)
+      
     }
    resetForm()
    {

@@ -2,34 +2,78 @@ import React from 'react'
 import axios from 'axios';
 class Home extends React.Component
 {
-    render()
-    {
+  constructor()
+   {
+      super();
+      this.state={
+         slider:[],
+         sliders:[],
+        
+         
+      }
+      
+   }
+   componentDidMount()
+   {
+     
+    
+      
+      axios.get('http://127.0.0.1/yaalgrill/Api_controller/get_slider')
+      .then(response=> {
+          const slider = response.data;
+         this.setState({sliders:response.data})
+         //const slug  = this.props.match.params;
+          console.log(this.state.sliders)
+          //console.log(response.data);
+      })
+      .catch(error => console.log(error));
+
+     
+      
+
+   }
+   render()
+   {
+    const baseurl = 'http://127.0.0.1/yaalgrill/Api_controller/get_slider';
+     const myDivStyle = {
+      maxwidth: '100%',
+      height: 'auto'
+     
+    };
+
+
+ 
+
+
+
+    const sliderr =this.state.sliders
     return (
-            <>
+           
             <div>
-            <div id="carouselExampleControls" className="carousel slide" data-bs-ride="carousel">
-    <div className="carousel-inner">
-      <div className="carousel-item active">
-        <img src="img/banner1.png" className="d-block w-100" alt="..." />
-        <div className="carousel-caption slider-txt position-absolute top-50 start-50 translate-middle w-100" data-aos="fade-in" data-aos-duration="800">
-          <h2>Enjoy Our <br />
-            Delicious</h2>
+           
+ 
+                       
+      
+    
+       
+      
+       <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+    {
+         this.state.sliders.map((ss,k)=>{
+          // sliderr.map((ss,k)=>{
+                             return ( 
+      <div class="carousel-item active">
+        <img src={window.baseurl+"assets/front/img/"+ss.s_image} class="d-block w-100" alt="..."/>
+        <div class="carousel-caption slider-txt position-absolute top-50 start-50 translate-middle w-100" data-aos="fade-in" data-aos-duration="800">
+          <h2>{ss.s_title}</h2>
         </div>
       </div>
-      <div className="carousel-item">
-        <img src="img/banner1.png" className="d-block w-100" alt="..."/>
-        <div className="carousel-caption slider-txt position-absolute top-50 start-50 translate-middle w-100" data-aos="fade-in" data-aos-duration="800">
-          <h2>Enjoy Our <br />
-            Delicious</h2>
-        </div>
-      </div>
-      <div className="carousel-item">
-        <img src="img/banner1.png" className="d-block w-100" alt="..."/>
-        <div className="carousel-caption slider-txt position-absolute top-50 start-50 translate-middle w-100" data-aos="fade-in" data-aos-duration="800">
-          <h2>Enjoy Our <br />
-            Delicious</h2>
-        </div>
-      </div>
+     )  
+                    
+    })
+    }
+     
     </div>
     <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
       <span className="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -272,10 +316,10 @@ class Home extends React.Component
   </div>
 </section>
 </div>
-            </>
-            );
+          
+            )
        }
       }
-      //export default Home;
+   
       export default Home;
       

@@ -40,10 +40,7 @@ function Footer()
           <h3 className="text-center mb-3">Stay informed about special offers</h3>
           <h3 className="h3-active text-center">Subscribe To The Newsleter</h3>
           
-        {/* <div className="input-group email-field mt-5 position-relative">
-          <input type="text" className="form-control custom-form-control" placeholder="ENTER EMAIL ID" aria-label="Recipient's username with two button addons"/>
-          <button className="btn btn-subscribe position-absolute end-0" type="button">Subscribe</button>
-        </div> */}
+        
         <NewsLetter/>
 
       </div>

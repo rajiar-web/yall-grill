@@ -24,8 +24,8 @@ class NewsLetter extends React.Component
       let errors = {};
       let formIsValid = true;
 
-
-     
+//alert('test');
+ 
  
  
       if(!fields["email"]){
@@ -42,9 +42,10 @@ class NewsLetter extends React.Component
             errors["email"] = "Email is not valid";
           }
      }  
-    
+     
       this.setState({errors: errors});
-        
+     
+    //  this.state.errors["email"]  
 
      return formIsValid;
  }
@@ -61,8 +62,7 @@ class NewsLetter extends React.Component
          let formData = new FormData();
          formData.append('inputEmail', fields['email']);
        
-     
-         console.log(formData);
+          console.log(formData);
          axios({
            method: 'post',
            url: apiUrl,
@@ -70,17 +70,15 @@ class NewsLetter extends React.Component
            config: { headers: {'Content-Type': 'application/json' }}
            })
            .then ((response) => {
-            console.log(response);
+            //console.log(response);
             var resData = response.data;
+           
               
-              
-              if (resData.res.msg === 'success') {
+              if (resData.msg === 'success') {
                toast.success("Well Done! We will get in touch with you as soon as possible.");
                this.resetForm();
-              
-            
-            } else if (resData.res.msg === 'fail') {
-               toast.error("Sorry! Something went wrong.");
+               } else  {
+                  toast.error(resData.msg);
                
             }
             
@@ -93,7 +91,7 @@ class NewsLetter extends React.Component
            });
      
       }else{
-
+         toast.error(this.state.errors["email"]);
        //  alert("Form has errors.")
       }
 
@@ -129,21 +127,12 @@ return (
  <div>
 
 <ToastContainer />
-
-<div className="input-group email-field mt-5 position-relative">
-
+<form name="newsform" className="newsform" onSubmit= {this.newsSubmit.bind(this)}>
+         <div className="input-group email-field mt-5 position-relative">
           <input type="text" className="form-control custom-form-control" id="email" name="email" placeholder="ENTER EMAIL ID" aria-label="Recipient's username with two button addons" onChange={this.handleChange.bind(this, "email")} value={this.state.fields["email"]}/>
-          <span style={{color: "red",fontSize:"12px"}}>{this.state.errors["email"]}</span>
-          <form name="newsform" className="newsform" onSubmit= {this.newsSubmit.bind(this)}>
           <button type="submit" name="submit" className="btn btn-subscribe position-absolute end-0">Subscribe</button>
-          
-          </form>
-        </div>
-
-
-
-      
-       
+         </div>
+ </form>
       </div>
       );
 }

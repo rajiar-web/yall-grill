@@ -1,7 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-// import {toast,ToastContainer} from 'react-toastify';
-import { ToastContainer, toast } from 'react-toastify';
+import {toast,ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 class NewsLetter extends React.Component
 {
@@ -110,7 +109,6 @@ class NewsLetter extends React.Component
     onFormSubmit(e) {
       e.preventDefault();
       console.log(this.state.startDate)
-      
     }
    resetForm()
    {
@@ -131,18 +129,18 @@ return (
  <div>
 
 <ToastContainer />
-<form name="newsform" className="newsform" onSubmit= {this.newsSubmit.bind(this)}>
+
 <div className="input-group email-field mt-5 position-relative">
 
           <input type="text" className="form-control custom-form-control" id="email" name="email" placeholder="ENTER EMAIL ID" aria-label="Recipient's username with two button addons" onChange={this.handleChange.bind(this, "email")} value={this.state.fields["email"]}/>
           <span style={{color: "red",fontSize:"12px"}}>{this.state.errors["email"]}</span>
-          
+          <form name="newsform" className="newsform" onSubmit= {this.newsSubmit.bind(this)}>
           <button type="submit" name="submit" className="btn btn-subscribe position-absolute end-0">Subscribe</button>
           
-         
+          </form>
         </div>
 
-        </form>
+
 
       
        

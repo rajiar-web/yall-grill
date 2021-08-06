@@ -13,8 +13,17 @@ class Listing extends React.Component
        
         
      }
-     
+   
   }
+
+
+ onItemClick(e){
+  e.preventDefault();
+  // this.setState({ input: e.target.value });
+  // this.setState({cinput: e.target.value})
+  alert("hi");
+ }
+
   componentDidMount()
   {
     
@@ -42,7 +51,8 @@ class Listing extends React.Component
        
      })
      .catch(error => console.log(error));
-     
+   
+   
 
   }
   render()
@@ -54,12 +64,11 @@ class Listing extends React.Component
      height: 'auto'
     
    };
-
-
+ 
+ 
  
       return(
-         
-       
+      
         <div>
 
 <section className="listing-page">
@@ -81,7 +90,7 @@ class Listing extends React.Component
           
                              return (
               <li className="nav-item">
-                <a className="nav-link" aria-current="page" href="#">{ctt.c_category}</a>
+                <a className="nav-link" aria-current="page" onClick={this.onItemClick} value={ctt.c_id}>{ctt.c_category}</a>
               </li>
                )  
                     
@@ -106,8 +115,10 @@ class Listing extends React.Component
         <div className="card card-cover home-item-card h-100 overflow-hidden text-white rounded-5 shadow-lg">
           <div className="d-flex flex-column h-100 p-3 p-md-4 py-4 text-white text-shadow-1">
             <p className="item-p">Chicken</p>
+            <a href={"/productdetails/"+ptt.p_slug}>
             <h4>{ptt.p_title}
             </h4>
+            </a>
             <img src={window.baseurl+"assets/front/img/products/"+ptt.p_image} alt=""/>
             <ul className="d-flex list-unstyled mt-4">
               
@@ -129,263 +140,7 @@ class Listing extends React.Component
                     
 })
 }
-      {/* <div className="col-12 col-md-4"  data-aos="fade-up" data-aos-duration="1200">
-        <div className="card card-cover home-item-card h-100 overflow-hidden text-white rounded-5 shadow-lg">
-          <div className="d-flex flex-column h-100  p-3 p-md-4 py-4 text-white text-shadow-1">
-            <p className="item-p">Chicken</p>
-            <h4>Grilled Chicken <br />
-              On Bamboo</h4>
-            <img src="img/dish2.png" alt=""/>
-            <ul className="d-flex list-unstyled mt-4">
-              
-              <li className="me-3 price">
-                <h3 className="mb-0">£2.70</h3>
-                <p className="mb-0">Hot & Spicy Mini Fillets</p>
-              </li>
-              <li className="ms-auto d-flex align-items-center">
-                <span className="pluse-fa d-flex align-items-center justify-content-center">
-                  <i className="fas fa-plus"></i>
-                </span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-     
-      <div className="col-12 col-md-4" data-aos="fade-up" data-aos-duration="800">
-        <div className="card card-cover home-item-card h-100 overflow-hidden text-white rounded-5 shadow-lg">
-          <div className="d-flex flex-column h-100  p-3 p-md-4 py-4 text-white text-shadow-1">
-            <p className="item-p">Chicken</p>
-            <h4>Grilled Chicken <br />
-              Drumsticks</h4>
-            <img src="img/dish3.png" alt=""/>
-            <ul className="d-flex list-unstyled mt-4">
-              
-              <li className="me-3 price">
-                <h3 className="mb-0">£3.00</h3>
-                <p className="mb-0">Hot & Spicy Mini Fillets</p>
-              </li>
-              <li className="ms-auto d-flex align-items-center">
-                <span className="pluse-fa d-flex align-items-center justify-content-center">
-                  <i className="fas fa-plus"></i>
-                </span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div className="col-12 col-md-4"  data-aos="fade-up" data-aos-duration="700">
-        <div className="card card-cover home-item-card h-100 overflow-hidden text-white rounded-5 shadow-lg">
-          <div className="d-flex flex-column h-100 p-3 p-md-4 py-4 text-white text-shadow-1">
-            <p className="item-p">Chicken</p>
-            <h4>Grilled Chicken <br />
-              Fillet (Full)</h4>
-            <img src="img/dish1.png" alt=""/>
-            <ul className="d-flex list-unstyled mt-4">
-              
-              <li className="me-3 price">
-                <h3 className="mb-0">£3.10</h3>
-                <p className="mb-0">Hot & Spicy Mini Fillets</p>
-              </li>
-              <li className="ms-auto d-flex align-items-center">
-                <span className="pluse-fa d-flex align-items-center justify-content-center">
-                  <i className="fas fa-plus"></i>
-                </span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-     
-      <div className="col-12 col-md-4"  data-aos="fade-up" data-aos-duration="1200">
-        <div className="card card-cover home-item-card h-100 overflow-hidden text-white rounded-5 shadow-lg">
-          <div className="d-flex flex-column h-100  p-3 p-md-4 py-4 text-white text-shadow-1">
-            <p className="item-p">Chicken</p>
-            <h4>Grilled Chicken <br />
-              On Bamboo</h4>
-            <img src="img/dish2.png" alt=""/>
-            <ul className="d-flex list-unstyled mt-4">
-              
-              <li className="me-3 price">
-                <h3 className="mb-0">£2.70</h3>
-                <p className="mb-0">Hot & Spicy Mini Fillets</p>
-              </li>
-              <li className="ms-auto d-flex align-items-center">
-                <span className="pluse-fa d-flex align-items-center justify-content-center">
-                  <i className="fas fa-plus"></i>
-                </span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-     
-      <div className="col-12 col-md-4" data-aos="fade-up" data-aos-duration="800">
-        <div className="card card-cover home-item-card h-100 overflow-hidden text-white rounded-5 shadow-lg">
-          <div className="d-flex flex-column h-100  p-3 p-md-4 py-4 text-white text-shadow-1">
-            <p className="item-p">Chicken</p>
-            <h4>Grilled Chicken <br />
-              Drumsticks</h4>
-            <img src="img/dish3.png" alt=""/>
-            <ul className="d-flex list-unstyled mt-4">
-              
-              <li className="me-3 price">
-                <h3 className="mb-0">£3.00</h3>
-                <p className="mb-0">Hot & Spicy Mini Fillets</p>
-              </li>
-              <li className="ms-auto d-flex align-items-center">
-                <span className="pluse-fa d-flex align-items-center justify-content-center">
-                  <i className="fas fa-plus"></i>
-                </span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div className="col-12 col-md-4"  data-aos="fade-up" data-aos-duration="700">
-        <div className="card card-cover home-item-card h-100 overflow-hidden text-white rounded-5 shadow-lg">
-          <div className="d-flex flex-column h-100 p-3 p-md-4 py-4 text-white text-shadow-1">
-            <p className="item-p">Chicken</p>
-            <h4>Grilled Chicken <br />
-              Fillet (Full)</h4>
-            <img src="img/dish1.png" alt=""/>
-            <ul className="d-flex list-unstyled mt-4">
-              
-              <li className="me-3 price">
-                <h3 className="mb-0">£3.10</h3>
-                <p className="mb-0">Hot & Spicy Mini Fillets</p>
-              </li>
-              <li className="ms-auto d-flex align-items-center">
-                <span className="pluse-fa d-flex align-items-center justify-content-center">
-                  <i className="fas fa-plus"></i>
-                </span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-     
-      <div className="col-12 col-md-4"  data-aos="fade-up" data-aos-duration="1200">
-        <div className="card card-cover home-item-card h-100 overflow-hidden text-white rounded-5 shadow-lg">
-          <div className="d-flex flex-column h-100  p-3 p-md-4 py-4 text-white text-shadow-1">
-            <p className="item-p">Chicken</p>
-            <h4>Grilled Chicken <br />
-              On Bamboo</h4>
-            <img src="img/dish2.png" alt=""/>
-            <ul className="d-flex list-unstyled mt-4">
-              
-              <li className="me-3 price">
-                <h3 className="mb-0">£2.70</h3>
-                <p className="mb-0">Hot & Spicy Mini Fillets</p>
-              </li>
-              <li className="ms-auto d-flex align-items-center">
-                <span className="pluse-fa d-flex align-items-center justify-content-center">
-                  <i className="fas fa-plus"></i>
-                </span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-     
-      <div className="col-12 col-md-4" data-aos="fade-up" data-aos-duration="800">
-        <div className="card card-cover home-item-card h-100 overflow-hidden text-white rounded-5 shadow-lg">
-          <div className="d-flex flex-column h-100  p-3 p-md-4 py-4 text-white text-shadow-1">
-            <p className="item-p">Chicken</p>
-            <h4>Grilled Chicken <br />
-              Drumsticks</h4>
-            <img src="img/dish3.png" alt=""/>
-            <ul className="d-flex list-unstyled mt-4">
-              
-              <li className="me-3 price">
-                <h3 className="mb-0">£3.00</h3>
-                <p className="mb-0">Hot & Spicy Mini Fillets</p>
-              </li>
-              <li className="ms-auto d-flex align-items-center">
-                <span className="pluse-fa d-flex align-items-center justify-content-center">
-                  <i className="fas fa-plus"></i>
-                </span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div className="col-12 col-md-4"  data-aos="fade-up" data-aos-duration="700">
-        <div className="card card-cover home-item-card h-100 overflow-hidden text-white rounded-5 shadow-lg">
-          <div className="d-flex flex-column h-100 p-3 p-md-4 py-4 text-white text-shadow-1">
-            <p className="item-p">Chicken</p>
-            <h4>Grilled Chicken <br />
-              Fillet (Full)</h4>
-            <img src="img/dish1.png" alt=""/>
-            <ul className="d-flex list-unstyled mt-4">
-              
-              <li className="me-3 price">
-                <h3 className="mb-0">£3.10</h3>
-                <p className="mb-0">Hot & Spicy Mini Fillets</p>
-              </li>
-              <li className="ms-auto d-flex align-items-center">
-                <span className="pluse-fa d-flex align-items-center justify-content-center">
-                  <i className="fas fa-plus"></i>
-                </span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-     
-      <div className="col-12 col-md-4"  data-aos="fade-up" data-aos-duration="1200">
-        <div className="card card-cover home-item-card h-100 overflow-hidden text-white rounded-5 shadow-lg">
-          <div className="d-flex flex-column h-100  p-3 p-md-4 py-4 text-white text-shadow-1">
-            <p className="item-p">Chicken</p>
-            <h4>Grilled Chicken <br />
-              On Bamboo</h4>
-            <img src="img/dish2.png" alt=""/>
-            <ul className="d-flex list-unstyled mt-4">
-              
-              <li className="me-3 price">
-                <h3 className="mb-0">£2.70</h3>
-                <p className="mb-0">Hot & Spicy Mini Fillets</p>
-              </li>
-              <li className="ms-auto d-flex align-items-center">
-                <span className="pluse-fa d-flex align-items-center justify-content-center">
-                  <i className="fas fa-plus"></i>
-                </span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-     
-      <div className="col-12 col-md-4" data-aos="fade-up" data-aos-duration="800">
-        <div className="card card-cover home-item-card h-100 overflow-hidden text-white rounded-5 shadow-lg">
-          <div className="d-flex flex-column h-100  p-3 p-md-4 py-4 text-white text-shadow-1">
-            <p className="item-p">Chicken</p>
-            <h4>Grilled Chicken <br />
-              Drumsticks</h4>
-            <img src="img/dish3.png" alt=""/>
-            <ul className="d-flex list-unstyled mt-4">
-              
-              <li className="me-3 price">
-                <h3 className="mb-0">£3.00</h3>
-                <p className="mb-0">Hot & Spicy Mini Fillets</p>
-              </li>
-              <li className="ms-auto d-flex align-items-center">
-                <span className="pluse-fa d-flex align-items-center justify-content-center">
-                  <i className="fas fa-plus"></i>
-                </span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div> */}
-
+    
 
 
     </div>

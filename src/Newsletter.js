@@ -108,7 +108,7 @@ class NewsLetter extends React.Component
   
     onFormSubmit(e) {
       e.preventDefault();
-      console.log(this.state.startDate)
+      // console.log(this.state.startDate)
     }
    resetForm()
    {

@@ -7,6 +7,8 @@ import Login from "./Login";
 import ProductDetails from "./ProductDetails";
 import Newsletter from "./Newsletter";
 import Header from "./inc/Header";import Footer from "./inc/Footer";
+// import { useParams } from 'react-router-dom';
+// let { slug } = useParams()
 window.baseurl = "http://127.0.0.1/yaalgrill/"
 const routing = (
   
@@ -18,7 +20,7 @@ const routing = (
 
      
         <Route path="/listing" component={Listing} />
-        <Route path="/productdetails" component={ProductDetails} />
+        <Route path="/productdetails/:id" component={ProductDetails} />
         <Route path="/newsletter" component={Newsletter} />
         <Route path="/login" component={Login} />
         {/* <Route component={Notfound} /> */}
